@@ -18,6 +18,7 @@ public class BoxItem : MonoBehaviour, IInteractable
     {
         if (isHeld)
         {
+            GameManager.Instance.ConsumirBateria(1);
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Drop();
@@ -49,6 +50,7 @@ public class BoxItem : MonoBehaviour, IInteractable
         transform.SetParent(holdPoint);
         transform.localPosition = new Vector3(0f, 0f, 0.8f);
         transform.localRotation = Quaternion.identity;
+
     }
 
     private void Drop()

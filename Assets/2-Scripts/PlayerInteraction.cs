@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(actionKey))
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position + Vector3.up * 0.1f, transform.forward, out hit, interactDistance, interactableLayer))
+            if (Physics.Raycast(transform.position + Vector3.up * -0.25f, transform.forward, out hit, interactDistance, interactableLayer))
             {
                 IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 if (interactable != null)
@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 origin = transform.position + Vector3.up * 0.1f;
+        Vector3 origin = transform.position + Vector3.up * -0.25f;
         Vector3 maxEndPosition = origin + (transform.forward * interactDistance);
 
         // 1. Dibujar SIEMPRE la línea base (roja) hasta la distancia máxima
