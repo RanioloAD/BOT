@@ -55,7 +55,7 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, angle, 0);
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
-            GameManager.Instance.ConsumirBateria(3);
+            GameManager.Instance.ConsumirBateria(1);
         }
         ApplyJuicySquashAndStretch();
     }
