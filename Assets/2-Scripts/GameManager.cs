@@ -9,10 +9,15 @@ public class GameManager : MonoBehaviour
     public float battery;
     public float maxBattery;
 
-
     public int materiales = 0;
     public int fragmentos = 0;
     public int fragmentosTotales = 5;
+
+    public bool grab = false;
+    public bool flashlight = false;
+    public bool fan = false;
+    public bool antena = false;
+    public bool weapon = false;
 
     private void Awake()
     {
@@ -36,7 +41,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void ConsumirBateria(float rate)
     {
         battery -= rate * Time.deltaTime;
@@ -44,12 +48,37 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
     }
 
-
     public void RecargarBateria(float rate)
     {
         battery += rate * Time.deltaTime;
         battery = Mathf.Clamp(battery, 0f, maxBattery);
         UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
+    }
+
+
+    public void UnlockGrab()
+    {
+        grab = true;
+    }
+
+    public void UnlockFlashlight()
+    {
+        flashlight = true;
+    }
+
+    public void UnlockFan()
+    {
+        fan = true;
+    }
+
+    public void UnlockAntena()
+    {
+        antena = true;
+    }
+
+    public void UnlockWeapon()
+    {
+        weapon = true;
     }
 
 }
