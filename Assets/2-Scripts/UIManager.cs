@@ -76,6 +76,8 @@ public class UIManager : MonoBehaviour
         isDialogueActive = true;
 
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         ShowLine();
     }
 
@@ -150,6 +152,8 @@ public class UIManager : MonoBehaviour
         isTyping = false;
 
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         onCompleteCallback?.Invoke();
     }

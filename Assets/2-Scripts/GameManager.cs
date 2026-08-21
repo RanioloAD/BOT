@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool fan = false;
     public bool antena = false;
     public bool weapon = false;
+    public bool run = false;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class GameManager : MonoBehaviour
         fragmentos += amount;
         Debug.Log("Fragmento conseguido");
 
+        if (MemoryUI.Instance != null)
+        {
+            MemoryUI.Instance.MostrarFragmento(fragmentos);
+        }
+
         if (fragmentos >= fragmentosTotales)
         {
             Debug.Log("Todos los fragmentos recuperados");
@@ -51,6 +57,13 @@ public class GameManager : MonoBehaviour
     public void RecargarBateria(float rate)
     {
         battery += rate * Time.deltaTime;
+        battery = Mathf.Clamp(battery, 0f, maxBattery);
+        UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
+    }
+
+    public void GastoRapido(float rate)
+    {
+        battery -= rate;
         battery = Mathf.Clamp(battery, 0f, maxBattery);
         UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
     }
@@ -79,6 +92,10 @@ public class GameManager : MonoBehaviour
     public void UnlockWeapon()
     {
         weapon = true;
+    }
+    public void UnlockRun()
+    {
+        run = true;
     }
 
 }
