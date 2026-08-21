@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
         fragmentos += amount;
         Debug.Log("Fragmento conseguido");
 
+        if (MemoryUI.Instance != null)
+        {
+            MemoryUI.Instance.MostrarFragmento(fragmentos);
+        }
+
         if (fragmentos >= fragmentosTotales)
         {
             Debug.Log("Todos los fragmentos recuperados");
