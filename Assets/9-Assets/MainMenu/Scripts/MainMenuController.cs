@@ -9,8 +9,8 @@ namespace B10.MainMenu
     public sealed class MainMenuController : MonoBehaviour
     {
         [Header("Scene Connection")]
-        [SerializeField, Tooltip("Assign the exact gameplay scene name here when it is confirmed and included in Build Settings.")]
-        private string gameSceneName = string.Empty;
+        [SerializeField, Tooltip("Exact gameplay scene included in Build Settings.")]
+        private string gameSceneName = "DemoLevel";
         [SerializeField, Tooltip("Enable only after a compatible save system is connected.")]
         private bool continueAvailable;
 
