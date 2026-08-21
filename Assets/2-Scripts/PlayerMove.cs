@@ -237,7 +237,7 @@ public class PlayerMove : MonoBehaviour
     {
         bool tieneCohetes = GameManager.Instance != null && GameManager.Instance.weapon;
 
-        if (tieneCohetes && Input.GetMouseButtonDown(0) && Time.time >= nextFireTime)
+        if (tieneCohetes && Input.GetMouseButtonDown(1) && Time.time >= nextFireTime)
         {
             nextFireTime = Time.time + fireRate;
 
