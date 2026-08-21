@@ -8,8 +8,6 @@ public class RobotUpgradesAndVisual : MonoBehaviour
     public GameObject Luz;
     bool OnOff;
 
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(actionKey) && GameManager.Instance.flashlight)
