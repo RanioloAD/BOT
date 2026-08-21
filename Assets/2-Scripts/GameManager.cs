@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public bool fan = false;
     public bool antena = false;
     public bool weapon = false;
+    public bool run = false;
 
     private void Awake()
     {
@@ -55,6 +56,13 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
     }
 
+    public void GastoRapido(float rate)
+    {
+        battery -= rate;
+        battery = Mathf.Clamp(battery, 0f, maxBattery);
+        UIManager.Instance.batteryImage.fillAmount = battery / maxBattery;
+    }
+
 
     public void UnlockGrab()
     {
@@ -79,6 +87,10 @@ public class GameManager : MonoBehaviour
     public void UnlockWeapon()
     {
         weapon = true;
+    }
+    public void UnlockRun()
+    {
+        run = true;
     }
 
 }

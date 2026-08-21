@@ -122,6 +122,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30579403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30579404}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30579404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30579403}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.021, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 83975761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83975760
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +186,7 @@ Transform:
   - {fileID: 1669770944}
   - {fileID: 1331333612}
   - {fileID: 798938502}
+  - {fileID: 30579404}
   m_Father: {fileID: 1250024157}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &91256378
@@ -1545,6 +1577,7 @@ MonoBehaviour:
   fan: 1
   antena: 1
   weapon: 1
+  run: 1
 --- !u!1 &524947318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1558,7 +1591,7 @@ GameObject:
   - component: {fileID: 524947321}
   - component: {fileID: 524947320}
   - component: {fileID: 524947323}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1818,7 +1851,7 @@ GameObject:
   - component: {fileID: 606803310}
   - component: {fileID: 606803309}
   - component: {fileID: 606803308}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plataforma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4440,13 +4473,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1250024158}
-  speed: 5
-  turnSmoothTime: 0.1
   cam: {fileID: 330585546}
+  speed: 5
+  runSpeedMultiplier: 2
+  turnSmoothTime: 0.1
+  gravity: -20
+  groundCheck: {fileID: 30579404}
+  sphereRadius: 0.3
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 192
+  jumpHeight: 2
+  flySpeedVertical: 5
   modelMesh: {fileID: 1823110476}
   stretchAmount: 0.15
   stretchSpeed: 12
   bounceSpeed: 15
+  missilePrefab: {fileID: 734695639272652706, guid: 3ab86bd67d9729842a2ddf4450753ae6,
+    type: 3}
+  missileSpawnPoint: {fileID: 1241642082}
+  fireRate: 0.8
+  radarRadius: 25
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1250024160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5608,7 +5658,7 @@ GameObject:
   - component: {fileID: 1616869215}
   - component: {fileID: 1616869214}
   - component: {fileID: 1616869218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CARGADOR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
