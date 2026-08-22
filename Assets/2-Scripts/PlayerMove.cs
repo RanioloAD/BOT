@@ -17,6 +17,11 @@ public class PlayerMove : MonoBehaviour
     private bool isMoving;
     private bool isRunning;
 
+    [Header("Visuales Ruedas (Simulación)")]
+    public Transform[] wheels; // Arrastra las 2 o 4 ruedas del personaje aquí en el Inspector
+    public float wheelRotationSpeed = 300f; // Multiplicador para la velocidad de giro de las ruedas
+    private float currentSpeedMagnitude; // Guarda la velocidad actual para rotar las ruedas
+
     [Header("Gravedad y Salto")]
     public float gravity = -9.81f;
     public Transform groundCheck;
@@ -97,6 +102,8 @@ public class PlayerMove : MonoBehaviour
         // Aplicar movimiento final
         controller.Move(finalMove * Time.deltaTime);
 
+        // 3. Efectos Visuales y Animación de Ruedas
+        ManejarAnimacionRuedas();
         ApplyJuicySquashAndStretch();
     }
 
@@ -156,11 +163,33 @@ public class PlayerMove : MonoBehaviour
                 GameManager.Instance.ConsumirBateria(batteryDrain);
             }
 
-            return moveDir.normalized * currentSpeed;
+            Vector3 calculatedMove = moveDir.normalized * currentSpeed;
+            currentSpeedMagnitude = currentSpeed; // Para la animación de las ruedas
+
+            return calculatedMove;
         }
 
         isRunning = false;
+        currentSpeedMagnitude = 0f;
         return Vector3.zero;
+    }
+
+    void ManejarAnimacionRuedas()
+    {
+        // Si no hay ruedas asignadas o no se está moviendo, salir
+        if (wheels == null || wheels.Length == 0 || !isMoving) return;
+
+        // Rotar cada rueda sobre su eje local X
+        float rotationAmount = currentSpeedMagnitude * wheelRotationSpeed * Time.deltaTime;
+
+        foreach (Transform wheel in wheels)
+        {
+            if (wheel != null)
+            {
+                // Usa Vector3.right para el eje X. Cambia a Vector3.forward o Vector3.up si tus modelos de ruedas giran en otro eje.
+                wheel.Rotate(Vector3.right, rotationAmount, Space.Self);
+            }
+        }
     }
 
     void ProcesarEntradaEspacio()
@@ -231,7 +260,6 @@ public class PlayerMove : MonoBehaviour
         }
         modelMesh.localScale = Vector3.Lerp(modelMesh.localScale, targetScale, Time.deltaTime * stretchSpeed);
     }
-
 
     void ManejarDisparoCohetes()
     {
