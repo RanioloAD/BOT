@@ -260,7 +260,7 @@ public class BoxItem : MonoBehaviour, IInteractable
         rb.isKinematic = false;
         rb.useGravity = true;
 
-        rb.linearVelocity = Vector3.zero;
+        rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         Invoke(nameof(EnableCollider), 0.15f);
